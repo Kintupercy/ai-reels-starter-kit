@@ -31,9 +31,15 @@ Auto reel: what is an AI agent
 ```
 Same flow, but after keyframe approval it generates the clone VO itself and goes straight to the finished reel. The only human steps left are the two approvals — and you can drop those too once you trust it (edit SKILL.md rule 4; it's your repo now).
 
+## 5. Composio (trend scan + auto-posting)
+The autopilot layer (`Trend reel:` in SKILL.md) uses Composio as the integration hub for social platforms:
+1. In your Composio dashboard, connect **X (Twitter)**, **Reddit**, and **Instagram**.
+2. Add the key to the agent's environment: `COMPOSIO_API_KEY=...`
+3. The agent uses the X/Reddit tools for the trend scan and the Instagram tool to publish the finished reel.
+4. Start supervised — leave the approval gates on for the first several runs. Only tell the agent "autopilot on" (hands-off posting) once it has produced a few clean reels, and keep the 1-post-per-day rail from SKILL.md.
+
 ## Troubleshooting
 - **Text looks warped after animation** → strengthen the "typography stays completely static" line in the animation prompt; regenerate just that clip.
 - **Misspelled words in a keyframe** → regenerate that frame with the exact words in quotes; never fix text in post.
 - **Reel feels slow** → speed the finished file 1.07–1.10× (SKILL.md rule 7), don't rush the VO read.
 - **Music fights the voice** → drop the bed to ~0.10 and keep it constant; no sidechain ducking.
-
