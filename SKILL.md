@@ -5,6 +5,7 @@
 ## Triggers (read intent, not exact words)
 - `Explainer reel: <topic>` → styles/clean-explainer.md
 - `Auto reel: <topic>` → same lane, fully hands-off: AI-cloned-voice VO per rule 1 AUTO mode
+- `Trend reel:` (no topic, or on a schedule) → autopilot: scan X/Reddit for a trending topic, then run it as an `Auto reel:` — see the Autopilot layer below.
 - If the message includes a URL: FETCH it first, extract real facts, never invent claims.
 
 ## Hard rules (apply to every reel)
@@ -30,9 +31,17 @@
 6. **QA** — extract 2–3 frames (hook, middle, CTA): check spelling, style consistency, audio present, duration. Fix before delivering.
 7. **Deliver** — `REEL-<topic>.mp4` + a caption + hashtags back in the chat.
 
+## Autopilot layer (trend → reel → post)
+Requires Composio integrations for X (Twitter), Reddit, and Instagram — see docs/agent-setup.md §5.
+
+1. **Trend scan** — search X and the niche's subreddits for what's trending in the last 24 hours. Rank candidates by engagement AND fit for a single-concept explainer. Pick ONE topic, then read its primary source before scripting (rule 9 applies double on trending news).
+2. **Produce** — run the standard workflow on that topic in AUTO voice mode (rule 1).
+3. **Approvals on autopilot** — default: still send the script and keyframes for approval. Only if the creator has explicitly said "autopilot on" do the waits get skipped — and even then, send the script and keyframes to the chat as an audit trail while proceeding.
+4. **Post** — publish the finished reel to Instagram via Composio with the caption template + hashtags. Report back in chat: the topic chosen and why, the voice used, and the post link.
+5. **Rails** — max 1 autopilot post per day. Never post a claim that couldn't be verified from a primary source. Skip topics involving tragedy, politics, or personal drama — this account teaches; it doesn't ragebait.
+
 ## Caption template
 Hook restated in one line → what the thing does (plain words) → CTA → "follow for more" → 8–10 niche hashtags.
 
 ## Self-improvement
 When the creator gives style feedback, update the relevant rule here or in the lane doc so the next reel starts from the improved recipe.
-
